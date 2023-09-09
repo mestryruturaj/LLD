@@ -12,4 +12,8 @@ public class AndroidButton extends AbstractButton{
         this.breadth = breadth;
         System.out.println(String.format("Android button is updated to length of %d, and width of %d.", length, breadth));
     }
+
+    public AndroidButton() {
+        System.out.println("Android button is created");
+    }
 }

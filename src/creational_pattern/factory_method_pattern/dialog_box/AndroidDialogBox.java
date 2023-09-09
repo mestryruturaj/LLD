@@ -12,4 +12,8 @@ public class AndroidDialogBox extends AbstractDialogBox{
         this.breadth = breadth;
         System.out.println(String.format("Android dialog box is updated to length of %d, and width of %d.", length, breadth));
     }
+
+    public AndroidDialogBox() {
+        System.out.println("Android dialog box is created.");
+    }
 }

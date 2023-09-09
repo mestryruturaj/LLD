@@ -12,4 +12,8 @@ public class IOSButton extends AbstractButton{
         this.breadth = breadth;
         System.out.println(String.format("IOS button is updated to length of %d, and width of %d.", length, breadth));
     }
+
+    public IOSButton() {
+        System.out.println("IOS Button is created.");
+    }
 }

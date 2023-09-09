@@ -12,4 +12,8 @@ public class IOSDialogBox extends AbstractDialogBox {
         this.breadth = breadth;
         System.out.println(String.format("IOS dialog box is updated to length of %d, and width of %d.", length, breadth));
     }
+
+    public IOSDialogBox() {
+        System.out.println("IOS dialog box is created.");
+    }
 }

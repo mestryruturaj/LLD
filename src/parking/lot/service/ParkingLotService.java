@@ -89,11 +89,12 @@ public class ParkingLotService {
         parkingSpot.setParkingSpotStatus(ParkingSpotStatus.UNAVAILABLE);
         parkingSpot.setVehicle(vehicle);
         vehicle.setParkingSpot(parkingSpot);
+        parkingLot.getActiveParkingSpots().put(vehicle.getLicencePlate(), parkingSpot);
 
         return ticket;
     }
 
-    public synchronized double unPark(Ticket ticket) {
+    public synchronized double unPark(ParkingLot parkingLot, Ticket ticket) {
         ticket.setUnParkedAt(System.currentTimeMillis());
         double amount = ticketService.calculateParkingDuration(ticket);
 
@@ -101,6 +102,8 @@ public class ParkingLotService {
         ticket.getParkingSpot().setParkingSpotStatus(ParkingSpotStatus.AVAILABLE);
         ticket.getParkingSpot().setVehicle(null);
         ticket.getVehicle().setParkingSpot(null);
+        parkingLot.getActiveParkingSpots().remove(ticket.getVehicle().getLicencePlate());
+
 
         return amount;
     }

@@ -30,7 +30,7 @@ public class Client {
             throw new RuntimeException(e);
         }
 
-        double amount = parkingLotService.unPark(ticket);
+        double amount = parkingLotService.unPark(parkingLot, ticket);
 
         System.out.println(ticket);
         System.out.println(amount);

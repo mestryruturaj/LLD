@@ -1,23 +1,22 @@
 package vending.machine.model;
 
-import vending.machine.model.enums.ItemType;
+import vending.machine.enums.ItemType;
 
 public class Item {
-    private static int count = 1;
-
-    private String id;
+    private static int serialNum = 0;
+    private int id;
     private ItemType itemType;
 
     public Item(ItemType itemType) {
-        this.id = itemType.name() + "000" + (count++);
+        this.id = serialNum++;
         this.itemType = itemType;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -27,13 +26,5 @@ public class Item {
 
     public void setItemType(ItemType itemType) {
         this.itemType = itemType;
-    }
-
-    @Override
-    public String toString() {
-        return "Item{" +
-                "id='" + id + '\'' +
-                ", itemType=" + itemType +
-                '}';
     }
 }

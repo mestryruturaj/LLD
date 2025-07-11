@@ -1,28 +1,51 @@
 package vending.machine;
 
-import vending.machine.model.Inventory;
-import vending.machine.model.VendingMachine;
-import vending.machine.model.enums.ItemType;
-import vending.machine.model.enums.PaymentType;
-import vending.machine.strategy.PaymentFactory;
+import vending.machine.enums.Coin;
+import vending.machine.enums.ItemType;
+import vending.machine.factory.StateRegistry;
+import vending.machine.model.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Client {
     public static void main(String[] args) {
+        Item item1 = new Item(ItemType.COKE);
+        Item item2 = new Item(ItemType.PROTEIN_BAR);
+        Item item3 = new Item(ItemType.MOUNTAIN_DEW);
+
+        Rack rack1 = new Rack(101, ItemType.COKE, 3);
+        Rack rack2 = new Rack(102, ItemType.PROTEIN_BAR, 7);
+        Rack rack3 = new Rack(103, ItemType.MOUNTAIN_DEW, 1);
+        rack1.addItem(item1);
+        rack2.addItem(item2);
+        rack3.addItem(item3);
+
+        Shelf shelf = new Shelf();
+        shelf.addRack(rack1);
+        shelf.addRack(rack2);
+        shelf.addRack(rack3);
+
         Inventory inventory = new Inventory();
-        PaymentFactory paymentFactory = new PaymentFactory();
-        VendingMachine vendingMachine = new VendingMachine(inventory, paymentFactory);
-        System.out.println("Vending Machine Installed.");
+        inventory.addShelf(shelf);
 
-        vendingMachine.addItems(ItemType.CHIPS_A, 10D, 20);
-        vendingMachine.addItems(ItemType.CHIPS_B, 7.75D, 20);
-        System.out.println("Items added in Vending Machine.");
+        Map<ItemType, Integer> prices = new HashMap<>();
+        prices.put(ItemType.COKE, 3);
+        prices.put(ItemType.PROTEIN_BAR, 7);
+        prices.put(ItemType.MOUNTAIN_DEW, 1);
 
-        vendingMachine.selectItem(ItemType.CHIPS_A, 3);
-        vendingMachine.selectItem(ItemType.CHIPS_B, 3);
+        VendingMachine vendingMachine = new VendingMachine(inventory, new StateRegistry(), prices);
 
+        vendingMachine.selectItem(101);
 
-        vendingMachine.makePayment(PaymentType.ONLINE, vendingMachine.getAmountToPay());
+        vendingMachine.insertCoin(Coin.ONE);
+        vendingMachine.insertCoin(Coin.ONE);
+        vendingMachine.insertCoin(Coin.ONE);
+        vendingMachine.insertCoin(Coin.TEN);
+
+        vendingMachine.makePayment();
 
         vendingMachine.dispense();
     }
 }
+

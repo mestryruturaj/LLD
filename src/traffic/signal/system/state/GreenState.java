@@ -7,9 +7,9 @@ import traffic.signal.system.enums.Light;
 public class GreenState implements SignalState {
     @Override
     public void handle(TrafficLight trafficLight, TrafficSignalController trafficSignalController) {
-        System.out.printf("Direction: %s | State: GREEN", trafficLight.getDirection());
+        System.out.printf("Direction: %s | State: GREEN%n", trafficLight.getDirection());
         int duration = trafficLight.getDurations().get(Light.GREEN);
-        SignalState nextState = trafficLight.getPossibleStates().get(Light.YELLOW);
+        SignalState nextState = trafficLight.getPossibleStates().get(Light.RED);
         trafficSignalController.scheduleStateChange(trafficLight, nextState, duration);
     }
 }

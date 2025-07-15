@@ -7,6 +7,7 @@ import traffic.signal.system.state.RedState;
 import traffic.signal.system.state.SignalState;
 import traffic.signal.system.state.YellowState;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class TrafficLight {
@@ -18,6 +19,7 @@ public class TrafficLight {
     public TrafficLight(Direction direction, Map<Light, Integer> durations) {
         this.direction = direction;
         this.durations = durations;
+        this.possibleStates = new HashMap<>();
         possibleStates.put(Light.GREEN, new GreenState());
         possibleStates.put(Light.YELLOW, new YellowState());
         possibleStates.put(Light.RED, new RedState());

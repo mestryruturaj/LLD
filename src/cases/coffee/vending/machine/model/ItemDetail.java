@@ -6,9 +6,16 @@ import java.util.Map;
 
 public class ItemDetail {
     private String name;
-    private double price;
+    private int price;
     private Map<Ingredients, Integer> ingredientsQtyMap;
     private Recipe recipe;
+
+    public ItemDetail(String name, int price, Map<Ingredients, Integer> ingredientsQtyMap, Recipe recipe) {
+        this.name = name;
+        this.price = price;
+        this.ingredientsQtyMap = ingredientsQtyMap;
+        this.recipe = recipe;
+    }
 
     public Item prepare() {
         return recipe.prepare(ingredientsQtyMap);
@@ -22,11 +29,11 @@ public class ItemDetail {
         this.name = name;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

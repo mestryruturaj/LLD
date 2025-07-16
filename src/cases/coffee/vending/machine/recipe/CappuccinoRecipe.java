@@ -11,7 +11,7 @@ public class CappuccinoRecipe implements Recipe {
     public Item prepare(Map<Ingredients, Integer> ingredientsQtyMap) {
         try {
             System.out.println("Started Preparing Cappuccino...");
-            TimeUnit.MINUTES.sleep(4);
+            TimeUnit.SECONDS.sleep(4);
             System.out.println("Completed Preparing Cappuccino...");
         } catch (InterruptedException e) {
             throw new RuntimeException(e);

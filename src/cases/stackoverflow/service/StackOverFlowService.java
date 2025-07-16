@@ -1,7 +1,6 @@
 package cases.stackoverflow.service;
 
 import cases.stackoverflow.model.*;
-import stackoverflow.model.*;
 import cases.stackoverflow.model.enums.VoteType;
 import cases.stackoverflow.model.enums.VotingEntityType;
 

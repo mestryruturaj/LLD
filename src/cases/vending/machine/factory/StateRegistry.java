@@ -2,7 +2,6 @@ package cases.vending.machine.factory;
 
 import cases.vending.machine.enums.MachineState;
 import cases.vending.machine.state.*;
-import vending.machine.state.*;
 
 import java.util.HashMap;
 import java.util.Map;

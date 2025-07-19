@@ -11,14 +11,22 @@ public class Task {
     private User author;
 
     public Task(String title, String description, TaskState taskState, User author) {
+        this.id = counter++;
         this.title = title;
         this.description = description;
         this.taskState = taskState;
         this.author = author;
     }
 
-    //getters and setters
+    public Task(String title, String description, User author) {
+        this.id = counter++;
+        this.title = title;
+        this.description = description;
+        this.author = author;
+        this.taskState = TaskState.TODO;
+    }
 
+    //getters and setters
     public int getId() {
         return id;
     }
@@ -39,11 +47,11 @@ public class Task {
         this.description = description;
     }
 
-    public TaskState getTaskState() {
+    public synchronized TaskState getTaskState() {
         return taskState;
     }
 
-    public void setTaskState(TaskState taskState) {
+    public synchronized void setTaskState(TaskState taskState) {
         this.taskState = taskState;
     }
 
@@ -54,4 +62,18 @@ public class Task {
     public void setAuthor(User author) {
         this.author = author;
     }
+
+
+    @Override
+    public String toString() {
+        return "\nTask{" +
+                "\n\tid=" + id +
+                "\n\ttitle='" + title + '\'' +
+                "\n\tdescription='" + description + '\'' +
+                "\n\ttaskState=" + taskState +
+                "\n\tauthor=" + author +
+                "\n}";
+    }
+
+
 }

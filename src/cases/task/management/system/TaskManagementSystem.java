@@ -2,9 +2,9 @@ package cases.task.management.system;
 
 import cases.task.management.system.enums.TaskState;
 import cases.task.management.system.exception.TaskManagementSystemException;
-import cases.task.management.system.models.Task;
-import cases.task.management.system.models.TaskLog;
-import cases.task.management.system.models.User;
+import cases.task.management.system.model.Task;
+import cases.task.management.system.model.TaskLog;
+import cases.task.management.system.model.User;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;

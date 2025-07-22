@@ -1,7 +1,7 @@
 package cases.task.management.system;
 
 import cases.task.management.system.enums.TaskState;
-import cases.task.management.system.models.Task;
+import cases.task.management.system.model.Task;
 
 import java.util.HashMap;
 import java.util.Map;

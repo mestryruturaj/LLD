@@ -1,4 +1,4 @@
-package cases.task.management.system.models;
+package cases.task.management.system.model;
 
 import cases.task.management.system.enums.TaskState;
 

@@ -1,4 +1,4 @@
-package cases.task.management.system.models;
+package cases.task.management.system.model;
 
 import java.util.HashMap;
 import java.util.Map;

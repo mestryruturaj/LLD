@@ -1,8 +1,8 @@
 package cases.task.management.system;
 
 import cases.task.management.system.enums.TaskState;
-import cases.task.management.system.models.Task;
-import cases.task.management.system.models.User;
+import cases.task.management.system.model.Task;
+import cases.task.management.system.model.User;
 
 import java.util.concurrent.TimeUnit;
 

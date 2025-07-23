@@ -1,6 +1,7 @@
 package cases.atm.machine.state;
 
 import cases.atm.machine.ATM;
+import cases.atm.machine.enums.Denomination;
 import cases.atm.machine.enums.MachineState;
 import cases.atm.machine.exception.AtmException;
 import cases.atm.machine.model.Card;
@@ -31,17 +32,21 @@ public class AtmStateAdapter implements AtmState {
     }
 
     @Override
-    public AtmState withdrawCash(ATM atm, int amount) {
+    public AtmState withdrawCash(ATM atm, BankService bankService, int amount) {
         throw new AtmException(String.format("Can not withdraw cash at this state [%s].", machineState.name()));
     }
 
     @Override
-    public AtmState depositCash(ATM atm, Map<ATM.Denomination, Integer> dipositedCash) {
+    public AtmState depositCash(ATM atm, BankService bankService, Map<Denomination, Integer> depositedCash) {
         throw new AtmException(String.format("Can not deposit at this state [%s].", machineState.name()));
     }
 
     @Override
     public AtmState reset(ATM atm) {
-        throw new AtmException(String.format("Can not reset at this state [%s].", machineState.name()));
+        atm.setInsertedCard(null);
+        atm.setInsertedPin(null);
+        atm.setDepositedAmount(0);
+        atm.setWithdrawnAmount(0);
+        return atm.getPossibleStates().get(MachineState.READY);
     }
 }

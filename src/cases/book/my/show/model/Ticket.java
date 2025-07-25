@@ -1,22 +1,23 @@
 package cases.book.my.show.model;
 
 
+import cases.book.my.show.model.enums.TicketStatus;
+
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class Ticket {
     private static int counter = 0;
-    private int id;
-    private List<ShowSeat> showSeats;
-    private User user;
-    private final Timestamp createdAt;
+    private final int id;
+    private Booking booking;
+    private TicketStatus ticketStatus;
 
     //constructor
-    public Ticket(List<ShowSeat> showSeat, User user) {
-        this.showSeats = showSeat;
-        this.user = user;
-        this.createdAt = Timestamp.valueOf(LocalDateTime.now());
+    public Ticket(Booking booking, TicketStatus ticketStatus) {
+        this.id = counter++;
+        this.booking = booking;
+        this.ticketStatus = ticketStatus;
     }
 
     //getters and setters
@@ -24,27 +25,19 @@ public class Ticket {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public Booking getBooking() {
+        return booking;
     }
 
-    public List<ShowSeat> getShowSeats() {
-        return showSeats;
+    public void setBooking(Booking booking) {
+        this.booking = booking;
     }
 
-    public void setShowSeats(List<ShowSeat> showSeats) {
-        this.showSeats = showSeats;
+    public TicketStatus getTicketStatus() {
+        return ticketStatus;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Timestamp getCreatedAt() {
-        return createdAt;
+    public void setTicketStatus(TicketStatus ticketStatus) {
+        this.ticketStatus = ticketStatus;
     }
 }

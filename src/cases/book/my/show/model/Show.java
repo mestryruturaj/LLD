@@ -1,7 +1,10 @@
 package cases.book.my.show.model;
 
+import cases.book.my.show.model.enums.SeatCategory;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Map;
 
 public class Show {
     private static int counter = 0;
@@ -10,14 +13,16 @@ public class Show {
     private LocalDate showDate;
     private LocalTime showTime;
     private Movie movie;
+    private Map<SeatCategory, Double> seatPrice;
 
     //constructor
-    public Show(Screen screen, LocalDate showDate, LocalTime showTime, Movie movie) {
+    public Show(Screen screen, LocalDate showDate, LocalTime showTime, Movie movie, Map<SeatCategory, Double> seatPrice) {
         this.id = counter++;
         this.screen = screen;
         this.showDate = showDate;
         this.showTime = showTime;
         this.movie = movie;
+        this.seatPrice = seatPrice;
     }
 
     //getters and setters
@@ -55,5 +60,13 @@ public class Show {
 
     public void setMovie(Movie movie) {
         this.movie = movie;
+    }
+
+    public Map<SeatCategory, Double> getSeatPrice() {
+        return seatPrice;
+    }
+
+    public void setSeatPrice(Map<SeatCategory, Double> seatPrice) {
+        this.seatPrice = seatPrice;
     }
 }

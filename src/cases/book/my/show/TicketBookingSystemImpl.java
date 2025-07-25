@@ -2,6 +2,7 @@ package cases.book.my.show;
 
 import cases.book.my.show.exception.TicketBookingSystemException;
 import cases.book.my.show.model.*;
+import cases.book.my.show.model.enums.TicketStatus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ public class TicketBookingSystemImpl implements TicketBookingSystem {
     private Map<Show, List<ShowSeat>> bookedShowSeats;
 
     @Override
-    public synchronized Ticket bookTicket(Show show, Screen screen, List<int[]> seats, User user) {
+    public synchronized Booking bookTicket(Show show, Screen screen, List<int[]> seats, User user) {
         if (!checkWhetherSeatsAvailable(show, seats)) {
             throw new TicketBookingSystemException("Selected seats are unavailable.");
         }
@@ -30,12 +31,8 @@ public class TicketBookingSystemImpl implements TicketBookingSystem {
             }
         }
 
-        //make payment
-
-        //
         bookedShowSeats.get(show).addAll(bookedSeats);
-        Ticket ticket = new Ticket(bookedSeats, user);
-        return ticket;
+        return new Booking(bookedSeats, user);
     }
 
     private boolean checkWhetherSeatsAvailable(Show show, List<int[]> seats) {
@@ -43,15 +40,21 @@ public class TicketBookingSystemImpl implements TicketBookingSystem {
             return true;
         }
 
-        for (int[] cell: seats) {
+        for (int[] cell : seats) {
             for (ShowSeat showSeat : bookedShowSeats.get(show)) {
                 if (cell[0] == showSeat.getSeat().getRow() && cell[1] == showSeat.getSeat().getCol()) {
                     return false;
                 }
-             }
+            }
         }
 
         return true;
+    }
+
+    //make payment
+    public Ticket makePayment(Booking booking) {
+        //payment logic
+        return new Ticket(booking, TicketStatus.PAID);
     }
 
     @Override
